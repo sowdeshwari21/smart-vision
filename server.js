@@ -396,6 +396,13 @@ app.get("/check-upload-trigger", (req, res) => {
     });
 });
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+  app.use(express.static(path.resolve(__dirname, "./public")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+  });
+
 // Remove the previous __dirname declaration and static serving code
 
 // const __dirname = dirname(fileURLToPath(import.meta.url));
