@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import customFetch from "../utils/customFetch";
 
 function Converter() {
   const [image, setImage] = useState(null);
@@ -140,7 +141,7 @@ function Converter() {
   // Fetch latest image data
   const fetchLatestImage = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/latest-image");
+      const response = await customFetch.get("/latest-image");
       console.log("Latest image data:", response.data);
 
       setLatestImageData(response.data);
@@ -175,8 +176,8 @@ function Converter() {
     formData.append("image", image);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/upload",
+      const response = await customFetch.post(
+        "/upload",
         formData
       );
       setText(response.data.text);
@@ -223,8 +224,8 @@ function Converter() {
       if (targetLang) {
         try {
           console.log("Translating text to:", targetLang);
-          const translationResponse = await axios.post(
-            "http://localhost:3000/translate",
+          const translationResponse = await customFetch.post(
+            "/translate",
             {
               from_text: textToSummarize,
               to_text: targetLang,
@@ -243,7 +244,7 @@ function Converter() {
       }
 
       // Now summarize the (possibly translated) text
-      const response = await axios.post("http://localhost:3000/summarize", {
+      const response = await customFetch.post("/summarize", {
         text: textToProcess,
       });
 
@@ -333,7 +334,7 @@ function Converter() {
       setIsTranslating(true);
       setError(null);
 
-      const response = await axios.post("http://localhost:3000/translate", {
+      const response = await customFetch.post("/translate", {
         from_text: textToTranslate,
         to_text: targetLang,
       });

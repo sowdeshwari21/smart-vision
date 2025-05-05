@@ -51,8 +51,8 @@ mongoose.connection.on('disconnected', () => {
 
 // Configure CORS with specific options
 app.use(cors({
-    origin: 'http://localhost:5173', // Vite's default port
-    methods: ['GET', 'POST'],
+    origin: '*', // Vite's default port
+    methods: ['GET', 'POST','PUT', 'DELETE','PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
@@ -92,7 +92,7 @@ app.use((req, res, next) => {
 });
 
 // Add new endpoint to get latest image data
-app.get("/latest-image", async (req, res) => {
+app.get("/api/v1/latest-image", async (req, res) => {
     try {
         const latestImage = await Image.findOne()
             .sort({ createdAt: -1 })
@@ -110,7 +110,7 @@ app.get("/latest-image", async (req, res) => {
 });
 
 // Add new endpoint to get latest image data (for client compatibility)
-app.get("/latest", async (req, res) => {
+app.get("/api/v1/latest", async (req, res) => {
     try {
         const latestImage = await Image.findOne()
             .sort({ createdAt: -1 })
@@ -296,7 +296,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 });
 
 // Add a new endpoint to check for new uploads
-app.get("/check-upload-trigger", (req, res) => {
+app.get("/api/v1/check-upload-trigger", (req, res) => {
     res.json({ 
         lastUploadTimestamp,
         success: true
