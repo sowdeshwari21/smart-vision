@@ -50,12 +50,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // Configure CORS with specific options
-app.use(cors({
-    origin: '*', // Vite's default port
-    methods: ['GET', 'POST','PUT', 'DELETE','PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 
@@ -134,7 +129,7 @@ app.get("/api/v1/latest", async (req, res) => {
 });
 
 // Update the translation endpoint
-app.post('/translate', async (req, res) => {
+app.post('/api/v1/translate', async (req, res) => {
     const { from_text, to_text } = req.body;
     if (!from_text || !to_text) {
         return res.status(400).json({ error: 'Both from_text and to_text are required.' });
@@ -152,7 +147,7 @@ app.post('/translate', async (req, res) => {
 });
 
 // Update the summarize endpoint
-app.post('/summarize', async (req, res) => {
+app.post('/api/v1/summarize', async (req, res) => {
     try {
         const { text } = req.body;
 
@@ -217,7 +212,7 @@ app.post('/summarize', async (req, res) => {
 let lastUploadTimestamp = new Date().toISOString();
 
 // Update the upload endpoint with Cloudinary integration
-app.post("/upload", upload.single("image"), async (req, res) => {
+app.post("/api/v1/upload", upload.single("image"), async (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ error: "No image file provided" });

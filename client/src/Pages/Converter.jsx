@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 
@@ -747,34 +747,10 @@ function Converter() {
                 <span aria-hidden="true" className="mr-2">
                   🔊
                 </span>
-                OCR Speech
+                Smart Vision
               </Link>
             </div>
-            <nav className="flex space-x-1">
-              <Link
-                to="/"
-                className="flex items-center px-4 py-2 text-white hover:bg-teal-600 rounded-lg transition-colors"
-                aria-label="Go to home page"
-              >
-                Home
-              </Link>
-              <Link
-                to="/converter"
-                className="flex items-center px-4 py-2 bg-teal-800 text-white rounded-lg font-semibold"
-                aria-current="page"
-                aria-label="Current page: Converter"
-              >
-                Converter
-              </Link>
-              <Link
-                to="/about"
-                className="flex items-center px-4 py-2 text-white hover:bg-teal-600 rounded-lg transition-colors"
-                aria-label="Go to about page"
-              >
-                About
-              </Link>
-            </nav>
-          </div>
+                  </div>
         </div>
       </header>
 
@@ -1310,7 +1286,7 @@ function Converter() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">OCR Text-to-Speech</h3>
+              <h3 className="text-xl font-bold mb-4">Smart Vision</h3>
               <p>
                 A powerful tool designed for blind and visually impaired users
                 to extract and interact with text from images.
@@ -1325,14 +1301,10 @@ function Converter() {
                 <li>• Text-to-speech in multiple languages</li>
               </ul>
             </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Contact</h3>
-              <p>For support or feedback, please contact us at:</p>
-              <p className="mt-2">support@ocrspeech.com</p>
-            </div>
+           
           </div>
           <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-            <p>© 2025 OCR Text-to-Speech Tool. All rights reserved.</p>
+            <p>© 2025 Smart Vision.</p>
           </div>
         </div>
       </footer>
